@@ -9,7 +9,7 @@ function getcomputerSelection(){
     } else if (value < 0.66) {
         return "PAPER";
     } else {
-        return "SCISSORS";
+        return "SCISSORgit ";
     }
     
 }
@@ -18,8 +18,8 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         roundWinner = "tie"
     }
-    else if (playerSelection == "rock"){
-        if (computerSelection == "paper") {
+    else if (playerSelection == "ROCK"){
+        if (computerSelection == "PAPER") {
             computerScore++;
             roundWinner = "comp";
         }
@@ -28,8 +28,8 @@ function playRound(playerSelection, computerSelection) {
             roundWinner = "player";
         }
         }
-    else if (playerSelection == "paper"){
-        if (computerSelection == "scissor"){
+    else if (playerSelection == "PAPER"){
+        if (computerSelection == "SCISSOR"){
             computerScore++;
             roundWinner = "comp";
         }
@@ -41,8 +41,8 @@ function playRound(playerSelection, computerSelection) {
 
         
     }
-    else if (playerSelection == "scissor"){
-        if (computerSelection == "rock"){
+    else if (playerSelection == "SCISSOR"){
+        if (computerSelection == "ROCK"){
             computerScore++;
             roundWinner = "comp";
         }
@@ -72,7 +72,7 @@ const scissorbtn = document.getElementById('scissorBox')
 
 rockbtn.addEventListener('click', () => handleClick('ROCK'))
 paperbtn.addEventListener('click', () => handleClick('PAPER'))
-scissorbtn.addEventListener('click', () => handleClick('SCISSORS'))
+scissorbtn.addEventListener('click', () => handleClick('SCISSOR'))
 
 function isGameOver() {
     return playerScore === 5 || computerScore === 5
@@ -87,6 +87,7 @@ function handleClick(playerSelection){
     playRound(playerSelection, computerSelection)
 
     updateChoices(playerSelection,computerSelection)
+    updateScore();
 }
 
 function updateChoices(playerSelection, computerSelection) {
@@ -97,7 +98,7 @@ function updateChoices(playerSelection, computerSelection) {
       case 'PAPER':
         playerSelections.textContent = '✋'
         break
-      case 'SCISSORS':
+      case 'SCISSOR':
         playerSelections.textContent = '✌️'
         break
     }
@@ -109,7 +110,7 @@ function updateChoices(playerSelection, computerSelection) {
       case 'PAPER':
         computerSelections.textContent = '✋'
         break
-      case 'SCISSORS':
+      case 'SCISSOR':
         computerSelections.textContent = '✌️'
         break
     }
@@ -120,7 +121,7 @@ function updateChoices(playerSelection, computerSelection) {
       scoreInfo.textContent = "It's a tie!"
     } else if (roundWinner === 'player') {
       scoreInfo.textContent = 'You won!'
-    } else if (roundWinner === 'computer') {
+    } else if (roundWinner === 'comp') {
       scoreInfo.textContent = 'You lost!'
     }
 }
