@@ -1,67 +1,54 @@
 let humanScore = 0;
 let computerScore = 0;
-
-
-function getComputerChoice(){
+let roundWinner = '';
+function getcomputerSelection(){
     let value = Math.random();
+    console.log(value);
     if (value < 0.33) {
-        return "rock";
+        return "ROCK";
     } else if (value < 0.66) {
-        return "paper";
+        return "PAPER";
     } else {
-        return "scissors";
+        return "SCISSORS";
     }
     
 }
 
-function getHumnanChoice(){
-    let userOpt = prompt("select rock paper or scissor")
-    if (userOpt.toLowerCase() == "rock"){
-        return "rock"
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        roundWinner = "tie"
     }
-    else if (userOpt.toLowerCase() == "paper"){ 
-        return "paper"
-    }
-    else if (userOpt.toLowerCase() == "scissor"){ 
-        return "scissor"
-    }
-}
-
-function playRound(HumanChoice, ComputerChoice) {
-    if (HumanChoice === ComputerChoice) {
-        return console.log("Tie!")
-    }
-    else if (HumanChoice == "rock"){
-        if (ComputerChoice == "paper") {
+    else if (playerSelection == "rock"){
+        if (computerSelection == "paper") {
             computerScore++;
-            return console.log("you lose")
+            roundWinner = "comp";
         }
         else {
             humanScore++;
-            return console.log("you won!")
+            roundWinner = "player";
         }
         }
-    else if (HumanChoice == "paper"){
-        if (ComputerChoice == "scissor"){
+    else if (playerSelection == "paper"){
+        if (computerSelection == "scissor"){
             computerScore++;
-            return console.log("you lose")
+            roundWinner = "comp";
         }
         else {
             humanScore++;
-            return console.log("you won!")
+            roundWinner = "player";
 
         }
 
         
     }
-    else if (HumanChoice == "scissor"){
-        if (ComputerChoice == "rock"){
+    else if (playerSelection == "scissor"){
+        if (computerSelection == "rock"){
             computerScore++;
-            return console.log("you lose")
+            roundWinner = "comp";
         }
         else {
             humanScore++;
-            return console.log("you won!")
+            roundWinner = "player";
 
         }
 
@@ -71,9 +58,71 @@ function playRound(HumanChoice, ComputerChoice) {
 
 }
 
-const humanSelection = getHumnanChoice();
-const computerSelection = getComputerChoice();
-console.log(humanSelection);
-console.log(computerSelection);
-playRound(humanSelection, computerSelection)
+
+
+const scoreInfo = document.getElementById('scoreInfo');
+const playerScores = document.getElementById('playerScore');
+const computerScores = document.getElementById('computerScore')
+const playerSelections = document.getElementById('playerSelection')
+const computerSelections = document.getElementById('computerSelection')
+const rockbtn = document.getElementById('rockBox')
+const paperbtn= document.getElementById('paperBox')
+const scissorbtn = document.getElementById('scissorBox')
+
+
+rockbtn.addEventListener('click', () => handleClick('ROCK'))
+paperbtn.addEventListener('click', () => handleClick('PAPER'))
+scissorbtn.addEventListener('click', () => handleClick('SCISSORS'))
+
+function isGameOver() {
+    return playerScore === 5 || computerScore === 5
+  }
+
+function handleClick(playerSelection){
+    if (isGameOver()) {
+        console.log("gameover")
+    }
+
+    const computerSelection = getcomputerSelection()
+    playRound(playerSelection, computerSelection)
+
+    updateChoices(playerSelection,computerSelection)
+}
+
+function updateChoices(playerSelection, computerSelection) {
+    switch (playerSelection) {
+      case 'ROCK':
+        playerSelections.textContent = '✊'
+        break
+      case 'PAPER':
+        playerSelections.textContent = '✋'
+        break
+      case 'SCISSORS':
+        playerSelections.textContent = '✌️'
+        break
+    }
+  
+    switch (computerSelection) {
+      case 'ROCK':
+        computerSelections.textContent = '✊'
+        break
+      case 'PAPER':
+        computerSelections.textContent = '✋'
+        break
+      case 'SCISSORS':
+        computerSelections.textContent = '✌️'
+        break
+    }
+  }
+
+  function updateScore() {
+    if (roundWinner === 'tie') {
+      scoreInfo.textContent = "It's a tie!"
+    } else if (roundWinner === 'player') {
+      scoreInfo.textContent = 'You won!'
+    } else if (roundWinner === 'computer') {
+      scoreInfo.textContent = 'You lost!'
+    }
+}
+
 

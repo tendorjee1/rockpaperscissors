@@ -1,0 +1,50 @@
+body {
+    margin: 0; 
+    padding: 0;
+}
+header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    background-color: antiquewhite;
+    width: 100vw; 
+    margin: 0;
+    padding: 50px 0; /* Adds equal padding to the top and bottom */
+    ;
+}
+
+.gameBoardTextContainer {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items horizontally */
+    font-size: large; /* Set the font size */
+}
+
+ .gameTitle h1 {
+    margin-bottom: 5px; /* Space below the h1 */
+}
+
+.subGameTitle h2 {
+    margin-top: 0; /* Ensure no extra space above the h2 */
+} 
+
+.gameBoardTextContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#playerSelection, #computerSelection, #playerScore, #computerScore{
+    display: flex;   
+    flex-direction: column;       /* Stack text vertically */
+    align-items: center;          /* Center text horizontally within each div */
+}
+
+.gameBoardSelection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

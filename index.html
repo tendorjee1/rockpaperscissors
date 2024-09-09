@@ -3,10 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>rps</title>
   </head>
   <body>
-    <h1>Hello</h1>
+    <header class="titleContainer">
+      <h1>Rock Paper Scissors</h1>
+    </header>
+
+    <section class="gameBoardTextContainer">
+      <div class="gameTitle">
+        <h1 id="scoreInfo">Choose Rock, Paper, or Scissors</h1>
+      </div>
+      <div class="subGameTitle">
+        <h2>Best of 5 wins</h2>
+      </div>
+    </section>
+
+    <section class="gameBoardContainer">
+      <div id="playerSelection">?</div>
+      <p id="playerScore">Player Score: 0</p>
+
+      <div id="computerSelection">?</div>
+      <p id="computerScore">Computer Score: 0</p>
+    </section>
+
+    <section class="gameBoardSelection">
+      <button id="rockBox">Rock</button>
+      <button id="paperBox">Paper</button>
+      <button id="scissorBox">Scissors</button>
+    </section>
+
     <script src="logic.js"></script>
   </body>
 </html>
